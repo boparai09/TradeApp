@@ -11,10 +11,10 @@
 
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="symbol" name="symbol" data-ng-model="trade.symbol"
-                       data-ng-maxlength="10" required ng-pattern="/^[a-zA-Z0-9]*$/" placeholder="Symbol">
+                       data-ng-maxlength="10" required data-ng-pattern="/^[a-zA-Z0-9]*$/" placeholder="Symbol">
 
-                <div ng-messages="tradeForm.symbol.$error" role="alert"
-                     ng-show="tradeForm.symbol.$dirty || tradeForm.$submitted">
+                <div data-ng-messages="tradeForm.symbol.$error" role="alert"
+                     data-ng-show="tradeForm.symbol.$dirty || tradeForm.$submitted">
                     <span data-ng-message="pattern" class="label label-danger">Please enter only alphanumeric</span>
                     <span data-ng-messages-include="error-messages"></span>
                 </div>
@@ -28,10 +28,10 @@
             <div class="col-sm-10">
                 <input type="number" class="form-control" id="quantity" name="quantity" required
                        data-ng-model="trade.quantity"
-                       placeholder="Quantity" ng-pattern="/^\d+$/">
+                       placeholder="Quantity" data-ng-pattern="/^\d+$/">
 
-                <div ng-messages="tradeForm.quantity.$error" role="alert"
-                     ng-show="tradeForm.quantity.$dirty || tradeForm.$submitted">
+                <div data-ng-messages="tradeForm.quantity.$error" role="alert"
+                     data-ng-show="tradeForm.quantity.$dirty || tradeForm.$submitted">
                     <span data-ng-message="pattern" class="label label-danger">Only positive Integers are allowed</span>
                     <span data-ng-messages-include="error-messages"></span>
                 </div>
@@ -47,8 +47,8 @@
                        awnum data-num-sep="." num-int="13" num-fract="2" num-neg="false" num-thousand="true"
                        data-validate-min="1" placeholder="e.g. X,XXX.XX">
 
-                <div ng-messages="tradeForm.price.$error" role="alert"
-                     ng-show="tradeForm.price.$dirty || tradeForm.$submitted">
+                <div data-ng-messages="tradeForm.price.$error" role="alert"
+                     data-ng-show="tradeForm.price.$dirty || tradeForm.$submitted">
                 <span data-ng-message="validateMin"
                       class="label label-danger">Price should be non-zero positive number</span>
                     <span data-ng-messages-include="error-messages"></span>
@@ -61,13 +61,11 @@
 
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="target" name="target" data-ng-model="trade.target"
-                       num-neg="false"
-                       data-validate-min="trade.price" awnum data-num-sep="." num-int="13" num-fract="2"
-                       num-thousand="true"
-                       placeholder="e.g. X,XXX.XX" required>
+                       num-neg="false" num-thousand="true" placeholder="e.g. X,XXX.XX" required
+                       data-validate-min="trade.price" awnum data-num-sep="." num-int="13" num-fract="2">
 
-                <div ng-messages="tradeForm.target.$error" role="alert"
-                     ng-show="tradeForm.target.$dirty || tradeForm.$submitted">
+                <div data-ng-messages="tradeForm.target.$error" role="alert"
+                     data-ng-show="tradeForm.target.$dirty || tradeForm.$submitted">
                     <span data-ng-message="validateMin" class="label label-danger">Target should be greater than or equal to price</span>
                     <span data-ng-messages-include="error-messages"></span>
                 </div>
@@ -83,8 +81,8 @@
                        awnum data-num-sep="." num-int="13" num-fract="2" num-thousand="true" num-neg="false" required
                        placeholder="e.g. X,XXX.XX" data-validate-max="trade.price" data-validate-min="1">
 
-                <div ng-messages="tradeForm.stopLoss.$error" role="alert"
-                     ng-show="tradeForm.stopLoss.$dirty || tradeForm.$submitted">
+                <div data-ng-messages="tradeForm.stopLoss.$error" role="alert"
+                     data-ng-show="tradeForm.stopLoss.$dirty || tradeForm.$submitted">
                     <span data-ng-message="validateMax" class="label label-danger">Stop loss should be less than or equal to price</span>
                     <span data-ng-message="validateMin" class="label label-danger">Stop loss cannot be 0</span>
                     <span data-ng-messages-include="error-messages"></span>
@@ -97,8 +95,8 @@
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="transDate" name="transDate" data-ng-model="trade.transDate"
                        validate-trans-date required placeholder="DD/MM/YYYY">
-                <div ng-messages="tradeForm.transDate.$error" role="alert"
-                     ng-show="tradeForm.transDate.$dirty || tradeForm.$submitted">
+                <div data-ng-messages="tradeForm.transDate.$error" role="alert"
+                     data-ng-show="tradeForm.transDate.$dirty || tradeForm.$submitted">
                     <span data-ng-message="validateTransDate" class="label label-danger">
                         Enter a valid date with "DD/MM/YYYY" format
                     </span>
@@ -175,7 +173,7 @@
     <form class="form-horizontal">
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">Download</button>
+                <button type="submit" class="btn btn-primary" data-ng-click="">Download</button>
             </div>
         </div>
     </form>

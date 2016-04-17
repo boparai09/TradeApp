@@ -1,5 +1,5 @@
 <div class="jumbotron">
-    <form class="form-horizontal" name="login" novalidate ng-submit="checkCred()">
+    <form class="form-horizontal" name="login" novalidate data-ng-submit="checkCred()">
         <div class="form-group"
              data-ng-class="{'has-error':login.username.$invalid && (login.username.$dirty || login.$submitted)}">
             <label for="username" class="col-sm-2 control-label">Email</label>
@@ -7,8 +7,8 @@
             <div class="col-sm-8">
                 <input type="email" class="form-control" id="username" name="username" placeholder="Email"
                        data-ng-model="username" required>
-                <div ng-messages="tradeForm.username.$error" role="alert"
-                     ng-show="login.username.$dirty || login.$submitted">
+                <div data-ng-messages="tradeForm.username.$error" role="alert"
+                     data-ng-show="login.username.$dirty || login.$submitted">
                     <span data-ng-message="Required" class="label label-danger">Please enter User Name</span>
                 </div>
             </div>
@@ -20,8 +20,8 @@
             <div class="col-sm-8">
                 <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password"
                        data-ng-model="password" required>
-                <div ng-messages="tradeForm.password.$error" role="alert"
-                     ng-show="login.password.$dirty || login.$submitted">
+                <div data-ng-messages="tradeForm.password.$error" role="alert"
+                     data-ng-show="login.password.$dirty || login.$submitted">
                     <span data-ng-message="Required" class="label label-danger">Please enter password</span>
                 </div>
             </div>
