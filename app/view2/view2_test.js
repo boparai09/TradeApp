@@ -6,13 +6,15 @@ describe('myApp.view2 module', function () {
 
     describe('view2 controller', function () {
         var MainCtrl,
-            scope;
+            scope,
+            trading={};
 
         // Initialize the controller and a mock scope
         beforeEach(inject(function ($controller, $rootScope) {
             scope = $rootScope.$new();
             MainCtrl = $controller('View2Ctrl', {
-                $scope: scope
+                $scope: scope,
+                trading:trading
             });
         }));
 
@@ -26,8 +28,9 @@ describe('myApp.view2 module', function () {
                 {"symbol": "bmbm", "quantity": 23423, "price": "241431", "target": "1231311", "stopLoss": "131123", "transDate": ""},
                 {"symbol": "ibm", "quantity": 21, "price": "23423", "target": "123133", "stopLoss": "123", "transDate": ""}
             ];
-            $scope.compileTrades();
-            expect($scope.compiledTrades).toBe(650);
+            var compiled = [{"symbol":"ibm","quantity":2363,"price":"122236.97","target":"123131.02","stopLoss":"1223.14","transDate":""},{"symbol":"bmbm","quantity":23423,"price":"241431","target":"1231311","stopLoss":"131123","transDate":""}];
+            scope.compileTrades();
+            expect(scope.compiledTrades).toBe(compiled);
         });
     });
 });
