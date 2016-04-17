@@ -1,0 +1,188 @@
+<script type="text/ng-template" id="error-messages">
+    <span data-ng-message="required" class="label label-danger">This field is required</span>
+    <span data-ng-message="maxlength"
+          class="label label-danger">This field has reached it's limit of 10 character</span>
+</script>
+<div class="jumbotron">
+    <form class="form-horizontal" name="tradeForm" novalidate data-ng-submit="submitTrade();">
+        <div class="form-group"
+             data-ng-class="{'has-error':tradeForm.symbol.$invalid && (tradeForm.symbol.$dirty || tradeForm.$submitted)}">
+            <label for="symbol" class="col-sm-2 control-label">Symbol *</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="symbol" name="symbol" data-ng-model="trade.symbol"
+                       data-ng-maxlength="10" required ng-pattern="/^[a-zA-Z0-9]*$/" placeholder="Symbol">
+
+                <div ng-messages="tradeForm.symbol.$error" role="alert"
+                     ng-show="tradeForm.symbol.$dirty || tradeForm.$submitted">
+                    <span data-ng-message="pattern" class="label label-danger">Please enter only alphanumeric</span>
+                    <span data-ng-messages-include="error-messages"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group"
+             data-ng-class="{'has-error':tradeForm.quantity.$invalid && (tradeForm.quantity.$dirty || tradeForm.$submitted)}">
+            <label for="quantity" class="col-sm-2 control-label">Quantity *</label>
+
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="quantity" name="quantity" required
+                       data-ng-model="trade.quantity"
+                       placeholder="Quantity" ng-pattern="/^\d+$/">
+
+                <div ng-messages="tradeForm.quantity.$error" role="alert"
+                     ng-show="tradeForm.quantity.$dirty || tradeForm.$submitted">
+                    <span data-ng-message="pattern" class="label label-danger">Only positive Integers are allowed</span>
+                    <span data-ng-messages-include="error-messages"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group"
+             data-ng-class="{'has-error':tradeForm.price.$invalid && (tradeForm.price.$dirty || tradeForm.$submitted)}">
+            <label for="price" class="col-sm-2 control-label">Price *</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="price" name="price" required data-ng-model="trade.price"
+                       min="1"
+                       awnum data-num-sep="." num-int="13" num-fract="2" num-neg="false" num-thousand="true"
+                       data-validate-min="1" placeholder="e.g. X,XXX.XX">
+
+                <div ng-messages="tradeForm.price.$error" role="alert"
+                     ng-show="tradeForm.price.$dirty || tradeForm.$submitted">
+                <span data-ng-message="validateMin"
+                      class="label label-danger">Price should be non-zero positive number</span>
+                    <span data-ng-messages-include="error-messages"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group"
+             data-ng-class="{'has-error':tradeForm.target.$invalid && (tradeForm.target.$dirty || tradeForm.$submitted)}">
+            <label for="target" class="col-sm-2 control-label">Target *</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="target" name="target" data-ng-model="trade.target"
+                       num-neg="false"
+                       data-validate-min="trade.price" awnum data-num-sep="." num-int="13" num-fract="2"
+                       num-thousand="true"
+                       placeholder="e.g. X,XXX.XX" required>
+
+                <div ng-messages="tradeForm.target.$error" role="alert"
+                     ng-show="tradeForm.target.$dirty || tradeForm.$submitted">
+                    <span data-ng-message="validateMin" class="label label-danger">Target should be greater than or equal to price</span>
+                    <span data-ng-messages-include="error-messages"></span>
+                </div>
+            </div>
+        </div>
+        <!--ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"  "/^[1-9]*(\d|,)+(\.[0-9]{1,2})?$/"-->
+        <div class="form-group"
+             data-ng-class="{'has-error':tradeForm.stopLoss.$invalid && (tradeForm.stopLoss.$dirty || tradeForm.$submitted)}">
+            <label for="stopLoss" class="col-sm-2 control-label">Stop Loss *</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="stopLoss" name="stopLoss" data-ng-model="trade.stopLoss"
+                       awnum data-num-sep="." num-int="13" num-fract="2" num-thousand="true" num-neg="false" required
+                       placeholder="e.g. X,XXX.XX" data-validate-max="trade.price" data-validate-min="1">
+
+                <div ng-messages="tradeForm.stopLoss.$error" role="alert"
+                     ng-show="tradeForm.stopLoss.$dirty || tradeForm.$submitted">
+                    <span data-ng-message="validateMax" class="label label-danger">Stop loss should be less than or equal to price</span>
+                    <span data-ng-message="validateMin" class="label label-danger">Stop loss cannot be 0</span>
+                    <span data-ng-messages-include="error-messages"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" data-ng-class="{'has-error':tradeForm.transDate.$invalid
+        && (tradeForm.transDate.$dirty || tradeForm.$submitted)}">
+            <label for="transDate" class="col-sm-2 control-label">Transaction Date *</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="transDate" name="transDate" data-ng-model="trade.transDate"
+                       validate-trans-date required placeholder="DD/MM/YYYY">
+                <div ng-messages="tradeForm.transDate.$error" role="alert"
+                     ng-show="tradeForm.transDate.$dirty || tradeForm.$submitted">
+                    <span data-ng-message="validateTransDate" class="label label-danger">
+                        Enter a valid date with "DD/MM/YYYY" format
+                    </span>
+                    <span data-ng-message="validateTransDateRange" class="label label-danger">
+                        Transaction Date should not be older than <b>Today</b> and should not be greater than <b>31/12/2025</b>
+                    </span>
+                    <span data-ng-messages-include="error-messages"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary" data-ng-disabled="tradeForm.$invalid">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="jumbotron" data-ng-show="trades.length>0">
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Transaction Id</th>
+            <th>Symbol</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Target</th>
+            <th>Stop Loss</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="trade in trades track by $index">
+            <td>{{$index}}</td>
+            <td>{{trade.symbol}}</td>
+            <td>{{trade.quantity}}</td>
+            <td>{{trade.price}}</td>
+            <td>{{trade.target}}</td>
+            <td>{{trade.stopLoss}}</td>
+            <td><span class="glyphicon glyphicon-trash" data-ng-click="deleteTrade($index)"></span></td>
+        </tr>
+        </tbody>
+    </table>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary" data-ng-click="compileTrades()">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="jumbotron" data-ng-show="compiledTrades && trades.length>0">
+    <table class="table table-bordered table-striped" data-ng-show="compiledTrades.length>0">
+        <thead>
+        <tr>
+            <th>Count</th>
+            <th>Symbol</th>
+            <th>Total Quantity</th>
+            <th>Average Price</th>
+            <th>Average Target</th>
+            <th>Average Stop Loss</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="trade in compiledTrades">
+            <td>{{$index+1}}</td>
+            <td>{{trade.symbol}}</td>
+            <td>{{trade.quantity}}</td>
+            <td>{{trade.price}}</td>
+            <td>{{trade.target}}</td>
+            <td>{{trade.stopLoss}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Download</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="loading" data-ng-show="loading">
+    <div class="overlay">
+    </div>
+    <div class="overlay-content"><img src="img/spinner.gif">
+    </div>
+</div>
