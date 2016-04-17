@@ -4,7 +4,7 @@
           class="label label-danger">This field has reached it's limit of 10 character</span>
 </script>
 <div class="jumbotron">
-    <form class="form-horizontal" name="tradeForm" novalidate data-ng-submit="submitTrade();">
+    <form class="form-horizontal" name="tradeForm" novalidate data-ng-submit="submitTrade();" id="trading">
         <div class="form-group"
              data-ng-class="{'has-error':tradeForm.symbol.$invalid && (tradeForm.symbol.$dirty || tradeForm.$submitted)}">
             <label for="symbol" class="col-sm-2 control-label">Symbol *</label>
@@ -117,7 +117,7 @@
     </form>
 </div>
 <div class="jumbotron" data-ng-show="trades.length>0">
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" id="trading-list">
         <thead>
         <tr>
             <th>Transaction Id</th>
@@ -150,7 +150,7 @@
     </form>
 </div>
 <div class="jumbotron" data-ng-show="compiledTrades && trades.length>0">
-    <table class="table table-bordered table-striped" data-ng-show="compiledTrades.length>0">
+    <table class="table table-bordered table-striped" data-ng-show="compiledTrades.length>0" id="compiled">
         <thead>
         <tr>
             <th>Count</th>
