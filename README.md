@@ -166,30 +166,31 @@ configure your server to serve the files under the `app/` directory.
 
 ### Assumptions
 
-1) This is first MVP, backend is still pending. So the configuration has been done keeping only UI into mind.
-2) User of application already been trained about basic flow of app.
-3) Login/ password is already been shared with user.
-4) We have covered the technical features on trading screen with wireframe structure. Final CSS changes are still pending.
-5) Service layer will be implemented once rest api structure has been discussed.
-6) This project has all the tools to be ready and test on local systems. Build related tasks like Minification, Concatination, AMD are pending.
+* This is first MVP, backend is still pending. So the configuration has been done keeping only UI into mind.
+* User of application already been trained about basic flow of app.
+* Login/ password is already been shared with user.
+* We have covered the technical features on trading screen with wireframe structure. Final CSS changes are still pending.
+* Service layer will be implemented once rest api structure has been discussed.
+* This project has all the tools to be ready and test on local systems. Build related tasks like Minification, Concatination, AMD are pending.
 
 ### Approach
 
 First screen is login screen. Type username/ password and go to trading screen. This screen has trading form
 as well as previously done tradings. user can add new entry. All validation needs to be correct to go through. We have used
 HTML5 validation as well as Regular expressions to validate and show proper error message to user. Below are validation list:
-1)	Symbol should be alphanumeric character, with no special character. And length should be inclusive 1 to 10 character
-2)	Quantity should be positive number with no decimal point allowed
-3)	Price/Target/Stop Loss should be non-zero positive number
-4)	Price/Target/Stop Loss should have exactly 2 decimal point
-5)	Price/Target/Stop Loss should be a formatted number string, using ‘,’ for the thousands separator and ‘.’ for the decimal separator
-6)	Target value must be greater or equal to price.
-7)	Stop loss value must be less or equal to price
-8)	Transaction Date should be a valid date string in the format DD/MM/YYYY.
-9)	Transaction Date should not allow invalid dates i.e. 31st February, 32nd December etc.
-10)	 Transaction Date should not be older than present date and should not be greater than 31/12/2025 inclusive
+*	Symbol should be alphanumeric character, with no special character. And length should be inclusive 1 to 10 character
+*	Quantity should be positive number with no decimal point allowed
+*	Price/Target/Stop Loss should be non-zero positive number
+*	Price/Target/Stop Loss should have exactly 2 decimal point
+*	Price/Target/Stop Loss should be a formatted number string, using ‘,’ for the thousands separator and ‘.’ for the decimal separator
+*	Target value must be greater or equal to price.
+*	Stop loss value must be less or equal to price
+*	Transaction Date should be a valid date string in the format DD/MM/YYYY.
+*	Transaction Date should not allow invalid dates i.e. 31st February, 32nd December etc.
+*	 Transaction Date should not be older than present date and should not be greater than 31/12/2025 inclusive
 
 ## Contact
+* Manpreet Singh Boparai # 8447571344
 
 For more information on AngularJS please check out http://angularjs.org/
 
