@@ -11,6 +11,6 @@ angular.module('myApp.login', ['ngRoute'])
 
     .controller('LoginCtrl', ['$scope', '$location', function ($scope, $location) {
         $scope.checkCred = function () {
-            $location.path('/view2');
+            $location.path('/home');
         };
     }]);

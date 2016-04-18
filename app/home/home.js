@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('myApp.home', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/view2', {
-            templateUrl: 'view2/view2.html',
-            controller: 'View2Ctrl'
+        $routeProvider.when('/home', {
+            templateUrl: 'home/home.html',
+            controller: 'HomeCtrl'
         });
     }])
 
-    .controller('View2Ctrl', ['$scope', 'trading', function ($scope, trading) {
+    .controller('HomeCtrl', ['$scope', 'trading', function ($scope, trading) {
         $scope.trades = [
             {"symbol": "ibm", "quantity": 2342, "price": "123123", "target": "123131", "stopLoss": "1233", "transDate": ""},
             {"symbol": "bmbm", "quantity": 23423, "price": "241431", "target": "1231311", "stopLoss": "131123", "transDate": ""},

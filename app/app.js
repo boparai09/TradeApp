@@ -6,7 +6,7 @@ angular.module('myApp', [
     'ngMessages',
     'dynamicNumber',
     'myApp.login',
-    'myApp.view2',
+    'myApp.home',
     'myApp.version'
 ]).
     config(['$routeProvider', function ($routeProvider) {

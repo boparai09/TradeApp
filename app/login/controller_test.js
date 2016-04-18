@@ -27,7 +27,7 @@ describe('myApp.login module', function() {
       });
       it('Should navigate to first page', function () {
           scope.checkCred();
-          expect(location.newPath).toBe('/view2');
+          expect(location.newPath).toBe('/home');
       });
   });
 });

@@ -1,10 +1,10 @@
 'use strict';
 
-describe('myApp.view2 module', function () {
+describe('myApp.home module', function () {
 
-    beforeEach(module('myApp.view2'));
+    beforeEach(module('myApp.home'));
 
-    describe('view2 controller', function () {
+    describe('home controller', function () {
         var MainCtrl,
             scope,
             trading={
@@ -23,7 +23,7 @@ describe('myApp.view2 module', function () {
         // Initialize the controller and a mock scope
         beforeEach(inject(function ($controller, $rootScope) {
             scope = $rootScope.$new();
-            MainCtrl = $controller('View2Ctrl', {
+            MainCtrl = $controller('HomeCtrl', {
                 $scope: scope,
                 trading:trading
             });
