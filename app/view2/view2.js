@@ -51,9 +51,10 @@ angular.module('myApp.view2', ['ngRoute'])
                     compiledTradesKey[currentTrade.symbol] = currentTrade;
                 }
             }
-            ;
             for (var key in compiledTradesKey) {
-                $scope.compiledTrades.push(compiledTradesKey[key]);
+                if (compiledTradesKey.hasOwnProperty(key)){
+                    $scope.compiledTrades.push(compiledTradesKey[key]);
+                }
             }
         };
         /*
@@ -73,11 +74,14 @@ angular.module('myApp.view2', ['ngRoute'])
                 $scope.trades.splice(index, 1);
             }
         };
+        $scope.downloadCSV = function () {
+            alasql("SELECT * INTO CSV('trades.csv') FROM ?",[$scope.compiledTrades]);
+        };
         $scope.reset();
     }])
     .factory('trading', ['$q', '$timeout',
         function ($q, $timeout) {
-            var factoryAPI = {
+            return {
                 saveTrade: function () {
                     var deferred = $q.defer();
                     $timeout(function () {
@@ -86,7 +90,6 @@ angular.module('myApp.view2', ['ngRoute'])
                     return deferred.promise;
                 }
             };
-            return factoryAPI;
         }
     ])
     .directive('validateMin', function () {
@@ -194,7 +197,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
                 function isEmpty(value) {
                     return angular.isUndefined(value) || value === '' || value === null || value !== value;
-                };
+                }
                 ctrl.$parsers.push(validator);
                 ctrl.$formatters.push(validator);
             }

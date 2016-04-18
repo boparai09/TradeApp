@@ -5,10 +5,10 @@ angular.module('myApp', [
     'ngRoute',
     'ngMessages',
     'dynamicNumber',
-    'myApp.view1',
+    'myApp.login',
     'myApp.view2',
     'myApp.version'
 ]).
     config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/view1'});
+        $routeProvider.otherwise({redirectTo: '/login'});
     }]);
