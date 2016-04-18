@@ -39,7 +39,7 @@ angular.module('myApp.home', ['ngRoute'])
                 })
             }
         };
-        
+
         $scope.compileTrades = function () {
             var compiledTradesKey = {};
             $scope.compiledTrades = [];

@@ -1,9 +1,6 @@
 # Trade App — Initial version of apps
 
 This project is an basic application skeleton using [AngularJS](http://angularjs.org/).
-You can use it to quickly bootstrap your angular webapp projects and dev environment for these
-projects.
-
 This AngularJS application is preconfigured to install the Angular framework and a bunch of development 
 and testing tools for instant web development gratification.
 
