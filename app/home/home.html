@@ -34,6 +34,7 @@
                 <div data-ng-messages="tradeForm.quantity.$error" role="alert"
                      data-ng-show="tradeForm.quantity.$dirty || tradeForm.$submitted">
                     <span data-ng-message="pattern" class="label label-danger">Only positive Integers are allowed</span>
+                    <span data-ng-message="number" class="label label-danger">Only positive Integers are allowed</span>
                     <span data-ng-messages-include="error-messages"></span>
                 </div>
             </div>
@@ -110,13 +111,13 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary" data-ng-disabled="tradeForm.$invalid">Submit</button>
+                <button type="submit" class="btn btn-primary" >Submit</button>
             </div>
         </div>
     </form>
 </div>
 <div class="jumbotron" data-ng-show="trades.length>0">
-    <h4 style="text-align: center"><b>All Trades Done So Far</b></h4><hr/>
+    <h4 style="text-align: center"><b>Trading Details</b></h4><hr/>
     <table class="table table-bordered table-striped" id="trading-list">
         <thead>
         <tr>

@@ -15,9 +15,9 @@ angular.module('myApp.home', ['ngRoute'])
             $scope.trade = {
                 symbol: '',
                 quantity: '',
-                price: 0,
-                target: 0,
-                stopLoss: 0,
+                price: null,
+                target: null,
+                stopLoss: null,
                 transDate: ''
             };
         };
@@ -156,7 +156,7 @@ angular.module('myApp.home', ['ngRoute'])
             restrict: 'A',
             require: 'ngModel',
             link: function (scope, elem, attr, ctrl) {
-                var regex = /([0-3][0-9])[\/]([0-1][0-9])[\/](\d{4})?$/;
+                var regex = /([0-3][0-9])[\/]([0-1][0-9])[\/](\d{4})?$/;// DD/MM/YYYY format allowed
                 var validator = function (value) {
                     var matches = value.match(regex),
                         valid = (!!matches);
@@ -197,7 +197,6 @@ angular.module('myApp.home', ['ngRoute'])
                         return value;
                     }
                 };
-
                 function isEmpty(value) {
                     return angular.isUndefined(value) || value === '' || value === null || value !== value;
                 }
