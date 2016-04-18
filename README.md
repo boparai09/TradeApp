@@ -1,9 +1,6 @@
 # Trade App — Initial version of apps
 
 This project is an basic application skeleton using [AngularJS](http://angularjs.org/).
-You can use it to quickly bootstrap your angular webapp projects and dev environment for these
-projects.
-
 This AngularJS application is preconfigured to install the Angular framework and a bunch of development 
 and testing tools for instant web development gratification.
 
@@ -31,7 +28,7 @@ npm start
 ```
 This command will automatically install dependencies and run application on local.
 
-Now browse to the app at `http://localhost:8000/app/index.html`.
+Now browse to the app at `http://localhost:8080/app/index.html`.
 
 ### Install Dependencies
 
@@ -52,6 +49,17 @@ folders in your project.
 
 * `node_modules` - contains the npm packages for the tools we need
 * `app/bower_components` - contains the angular framework files
+
+## Documentation
+
+We have used ng-docs to write documentation below are dependencies if you need to check docs
+
+* install [grunt-cli](https://github.com/gruntjs/grunt-cli) `npm install -g grunt-cli`
+* Then install dependencies with: `npm install`
+
+####Build and run
+
+Run `grunt` and open http://localhost:8000/docs in your Browser.
 
 ## Directory Layout
 
@@ -166,7 +174,7 @@ Then you can start your own development web server to serve static files from a 
 running:
 
 ```
-http-server -a localhost -p 8000
+http-server -a localhost -p 8080
 ```
 
 Alternatively, you can choose to configure your own webserver, such as apache or nginx. Just
@@ -177,16 +185,28 @@ configure your server to serve the files under the `app/` directory.
 
 ### Assumptions
 
-1) This is first MVP, backed is still pending. So the configuration has been done keeping only UI into mind.
+1) This is first MVP, backend is still pending. So the configuration has been done keeping only UI into mind.
 2) User of application already been trained about basic flow of app.
 3) Login/ password is already been shared with user.
 4) We have covered the technical features on trading screen with wireframe structure. Final CSS changes are still pending.
 5) Service layer will be implemented once rest api structure has been discussed.
+6) This project has all the tools to be ready and test on local systems. Build related tasks like Minification, Concatination, AMD are pending.
 
 ### Approach
 
-First screen is login scree. Type username/ password and go to trading screen. This screen has trading form
-as well as previously done tradings. user can add new entry. All validation needs to be correct to go through.
+First screen is login screen. Type username/ password and go to trading screen. This screen has trading form
+as well as previously done tradings. user can add new entry. All validation needs to be correct to go through. We have used
+HTML5 validation as well as Regular expressions to validate and show proper error message to user. Below are validation list:
+1)	Symbol should be alphanumeric character, with no special character. And length should be inclusive 1 to 10 character
+2)	Quantity should be positive number with no decimal point allowed
+3)	Price/Target/Stop Loss should be non-zero positive number
+4)	Price/Target/Stop Loss should have exactly 2 decimal point
+5)	Price/Target/Stop Loss should be a formatted number string, using ‘,’ for the thousands separator and ‘.’ for the decimal separator
+6)	Target value must be greater or equal to price.
+7)	Stop loss value must be less or equal to price
+8)	Transaction Date should be a valid date string in the format DD/MM/YYYY.
+9)	Transaction Date should not allow invalid dates i.e. 31st February, 32nd December etc.
+10)	 Transaction Date should not be older than present date and should not be greater than 31/12/2025 inclusive
 
 ## Contact
 

@@ -10,7 +10,8 @@ module.exports = function (config) {
             'app/bower_components/angular-messages/angular-messages.min.js',
             'app/bower_components/angular-dynamic-number/release/dynamic-number.min.js',
             'app/components/**/*.js',
-            'app/view*/**/*.js'
+            'app/login/**/*.js',
+            'app/home/**/*.js'
         ],
 
         autoWatch: true,

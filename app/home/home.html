@@ -4,6 +4,7 @@
           class="label label-danger">This field has reached it's limit of 10 character</span>
 </script>
 <div class="jumbotron">
+    <h4 style="text-align: center"><b>Enter New Details</b></h4><hr/>
     <form class="form-horizontal" name="tradeForm" novalidate data-ng-submit="submitTrade();" id="trading">
         <div class="form-group"
              data-ng-class="{'has-error':tradeForm.symbol.$invalid && (tradeForm.symbol.$dirty || tradeForm.$submitted)}">
@@ -33,6 +34,7 @@
                 <div data-ng-messages="tradeForm.quantity.$error" role="alert"
                      data-ng-show="tradeForm.quantity.$dirty || tradeForm.$submitted">
                     <span data-ng-message="pattern" class="label label-danger">Only positive Integers are allowed</span>
+                    <span data-ng-message="number" class="label label-danger">Only positive Integers are allowed</span>
                     <span data-ng-messages-include="error-messages"></span>
                 </div>
             </div>
@@ -109,12 +111,13 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary" data-ng-disabled="tradeForm.$invalid">Submit</button>
+                <button type="submit" class="btn btn-primary" >Submit</button>
             </div>
         </div>
     </form>
 </div>
 <div class="jumbotron" data-ng-show="trades.length>0">
+    <h4 style="text-align: center"><b>Trading Details</b></h4><hr/>
     <table class="table table-bordered table-striped" id="trading-list">
         <thead>
         <tr>
@@ -135,7 +138,7 @@
             <td>{{trade.price}}</td>
             <td>{{trade.target}}</td>
             <td>{{trade.stopLoss}}</td>
-            <td><span class="glyphicon glyphicon-trash" data-ng-click="deleteTrade($index)"></span></td>
+            <td><a href><span class="glyphicon glyphicon-trash" data-ng-click="deleteTrade($index)"></span></a></td>
         </tr>
         </tbody>
     </table>
@@ -148,6 +151,7 @@
     </form>
 </div>
 <div class="jumbotron" data-ng-show="compiledTrades && trades.length>0">
+    <h4 style="text-align: center"><b>Complied All Shares</b></h4><hr/>
     <table class="table table-bordered table-striped" data-ng-show="compiledTrades.length>0" id="compiled">
         <thead>
         <tr>
@@ -173,7 +177,7 @@
     <form class="form-horizontal">
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary" data-ng-click="">Download</button>
+                <button type="submit" class="btn btn-primary" data-ng-click="downloadCSV()">Download</button>
             </div>
         </div>
     </form>

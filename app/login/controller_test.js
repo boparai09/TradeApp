@@ -1,10 +1,10 @@
 'use strict';
 
-describe('myApp.view1 module', function() {
+describe('myApp.login module', function() {
 
-  beforeEach(module('myApp.view1'));
+  beforeEach(module('myApp.login'));
 
-  describe('view1 controller', function(){
+  describe('LoginCtrl controller', function(){
       var MainCtrl,
           scope,
           location={
@@ -16,7 +16,7 @@ describe('myApp.view1 module', function() {
       // Initialize the controller and a mock scope
       beforeEach(inject(function ($controller, $rootScope) {
           scope = $rootScope.$new();
-          MainCtrl = $controller('View1Ctrl', {
+          MainCtrl = $controller('LoginCtrl', {
               $scope: scope,
               $location:location
           });
@@ -27,7 +27,7 @@ describe('myApp.view1 module', function() {
       });
       it('Should navigate to first page', function () {
           scope.checkCred();
-          expect(location.newPath).toBe('/view2');
+          expect(location.newPath).toBe('/home');
       });
   });
 });
