@@ -11,16 +11,28 @@ The app doesn't do much, just shows how to wire two views together. One is login
 
 ### Prerequisites
 
-You need git to clone the angular-seed repository. You can get git from
+You need git to install some dependencies. You can get git from
 [http://git-scm.com/](http://git-scm.com/).
 
-We also use a number of node.js tools to initialize and test angular-seed. You must have node.js and
+We also use a number of node.js tools to initialize and test application. You must have node.js and
 its package manager (npm) installed.  You can get them from [http://nodejs.org/](http://nodejs.org/).
 
 ### Create Repo
 
 Download and Unzip the folder
- 
+
+### Run the Application
+
+Application have been preconfigured with a simple development web server.  The simplest way to start
+this server is:
+
+```
+npm start
+```
+This command will automatically install dependencies and run application on local.
+
+Now browse to the app at `http://localhost:8000/app/index.html`.
+
 ### Install Dependencies
 
 We have two kinds of dependencies in this project: tools and angular framework code.  The tools help
@@ -40,19 +52,6 @@ folders in your project.
 
 * `node_modules` - contains the npm packages for the tools we need
 * `app/bower_components` - contains the angular framework files
-
-### Run the Application
-
-We have preconfigured the project with a simple development web server.  The simplest way to start
-this server is:
-
-```
-npm start
-```
-
-Now browse to the app at `http://localhost:8000/app/index.html`.
-
-
 
 ## Directory Layout
 
@@ -172,21 +171,6 @@ http-server -a localhost -p 8000
 
 Alternatively, you can choose to configure your own webserver, such as apache or nginx. Just
 configure your server to serve the files under the `app/` directory.
-
-
-### Running the App in Production
-
-This really depends on how complex your app is and the overall infrastructure of your system, but
-the general rule is that all you need in production are all the files under the `app/` directory.
-Everything else should be omitted.
-
-Angular apps are really just a bunch of static html, css and js files that just need to be hosted
-somewhere they can be accessed by browsers.
-
-If your Angular app is talking to the backend server via xhr or other means, you need to figure
-out what is the best way to host the static files to comply with the same origin policy if
-applicable. Usually this is done by hosting the files by the backend server or through
-reverse-proxying the backend server(s) and webserver(s).
 
 
 ## Important Notes
