@@ -10,11 +10,7 @@ angular.module('myApp.home', ['ngRoute'])
     }])
 
     .controller('HomeCtrl', ['$scope', 'trading', function ($scope, trading) {
-        $scope.trades = [
-            {"symbol": "ibm", "quantity": 2342, "price": "123123", "target": "123131", "stopLoss": "1233", "transDate": ""},
-            {"symbol": "bmbm", "quantity": 23423, "price": "241431", "target": "1231311", "stopLoss": "131123", "transDate": ""},
-            {"symbol": "ibm", "quantity": 21, "price": "23423", "target": "123133", "stopLoss": "123", "transDate": ""}
-        ];
+        $scope.trades = trading.getTrades();
         $scope.reset = function () {
             $scope.trade = {
                 symbol: '',
@@ -82,6 +78,13 @@ angular.module('myApp.home', ['ngRoute'])
     .factory('trading', ['$q', '$timeout',
         function ($q, $timeout) {
             return {
+                getTrades: function () {
+                    return [
+                        {"symbol": "ibm", "quantity": 2342, "price": "123123", "target": "123131", "stopLoss": "1233", "transDate": ""},
+                        {"symbol": "bmbm", "quantity": 23423, "price": "241431", "target": "1231311", "stopLoss": "131123", "transDate": ""},
+                        {"symbol": "ibm", "quantity": 21, "price": "23423", "target": "123133", "stopLoss": "123", "transDate": ""}
+                    ];
+                },
                 saveTrade: function () {
                     var deferred = $q.defer();
                     $timeout(function () {
@@ -153,7 +156,7 @@ angular.module('myApp.home', ['ngRoute'])
             restrict: 'A',
             require: 'ngModel',
             link: function (scope, elem, attr, ctrl) {
-                var regex = /([0-3][0-9])[\/]([0-1][0-9])[\/](\d{4})/;
+                var regex = /([0-3][0-9])[\/]([0-1][0-9])[\/](\d{4})?$/;
                 var validator = function (value) {
                     var matches = value.match(regex),
                         valid = (!!matches);
