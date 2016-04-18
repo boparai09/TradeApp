@@ -31,7 +31,7 @@ npm start
 ```
 This command will automatically install dependencies and run application on local.
 
-Now browse to the app at `http://localhost:8000/app/index.html`.
+Now browse to the app at `http://localhost:8080/app/index.html`.
 
 ### Install Dependencies
 
@@ -52,6 +52,17 @@ folders in your project.
 
 * `node_modules` - contains the npm packages for the tools we need
 * `app/bower_components` - contains the angular framework files
+
+## Documentation
+
+We have used ng-docs to write documentation below are dependencies if you need to check docs
+
+* install [grunt-cli](https://github.com/gruntjs/grunt-cli) `npm install -g grunt-cli`
+* Then install dependencies with: `npm install`
+
+####Build and run
+
+Run `grunt` and open http://localhost:8000/docs in your Browser.
 
 ## Directory Layout
 
@@ -166,7 +177,7 @@ Then you can start your own development web server to serve static files from a 
 running:
 
 ```
-http-server -a localhost -p 8000
+http-server -a localhost -p 8080
 ```
 
 Alternatively, you can choose to configure your own webserver, such as apache or nginx. Just

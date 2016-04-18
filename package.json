@@ -2,7 +2,7 @@
   "name": "Trading-app",
   "private": true,
   "version": "0.0.0",
-  "description": "A project for AngularJS",
+  "description": "Basic project for trading app",
   "repository": "https://github.com/boparai09/TradeApp.git",
   "license": "MIT",
   "devDependencies": {
@@ -15,13 +15,18 @@
     "karma-jasmine": "^0.3.5",
     "karma-junit-reporter": "^0.2.2",
     "protractor": "^2.1.0",
-    "shelljs": "^0.2.6"
+    "shelljs": "^0.2.6",
+    "grunt": "~0.4.1",
+    "grunt-ngdocs": "~0.1.1",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-clean": "0.4.1"
+
   },
   "scripts": {
     "postinstall": "bower install",
 
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1",
+    "start": "http-server -a localhost -p 8080 -c-1",
 
     "pretest": "npm install",
     "test": "karma start karma.conf.js",

@@ -8,7 +8,13 @@ angular.module('myApp.home', ['ngRoute'])
             controller: 'HomeCtrl'
         });
     }])
-
+    /**
+     * @ngdoc object
+     * @name myApp.home:HomeCtrl
+     * @description
+     * # Controller
+     * Controller for home screen. contains all the behavioral functions for home screen
+     */
     .controller('HomeCtrl', ['$scope', 'trading', function ($scope, trading) {
         $scope.trades = trading.getTrades();
         $scope.reset = function () {
@@ -33,9 +39,7 @@ angular.module('myApp.home', ['ngRoute'])
                 })
             }
         };
-
-        /*This function will iterate through all the trades and combine based on symbol*/
-
+        
         $scope.compileTrades = function () {
             var compiledTradesKey = {};
             $scope.compiledTrades = [];
@@ -75,9 +79,27 @@ angular.module('myApp.home', ['ngRoute'])
         };
         $scope.reset();
     }])
+    /**
+     * @ngdoc service
+     * @name myApp.home:trading
+     * @description
+     * # rest
+     * Service to talk with backend api.
+     */
     .factory('trading', ['$q', '$timeout',
         function ($q, $timeout) {
             return {
+                /**
+                 * @ngdoc method
+                 * @name myApp.home:trading#getTrades
+                 * @methodOf myApp.home:trading
+                 *
+                 * @description
+                 * Method to get data form the backend api for past transactions
+                 * @example
+                 * trading.getTrades();
+                 * @returns {httpPromise} resolve with fetched data, or fails with error description.
+                 */
                 getTrades: function () {
                     return [
                         {"symbol": "ibm", "quantity": 2342, "price": "123123", "target": "123131", "stopLoss": "1233", "transDate": ""},
@@ -85,6 +107,19 @@ angular.module('myApp.home', ['ngRoute'])
                         {"symbol": "ibm", "quantity": 21, "price": "23423", "target": "123133", "stopLoss": "123", "transDate": ""}
                     ];
                 },
+
+                /**
+                 * @ngdoc method
+                 * @name myApp.home:trading#saveTrade
+                 * @methodOf myApp.home:trading
+                 *
+                 * @description
+                 * Method to save data of current transactions
+                 * @example
+                 * trading.saveTrade(data);
+                 * @param {object} entity having current validated trade data
+                 * @returns {httpPromise} resolve with fetched data, or fails with error description.
+                 */
                 saveTrade: function () {
                     var deferred = $q.defer();
                     $timeout(function () {
@@ -95,6 +130,20 @@ angular.module('myApp.home', ['ngRoute'])
             };
         }
     ])
+    /**
+     * @ngdoc directive
+     * @name myApp.home:validateMin
+     * @element input
+     * @function
+     *
+     * @description
+     * user can define minimum allowed value dynamically. will through validation error if value is less that min allowed
+     *
+     * @example
+         <form name="tradeForm">
+         <input type="text" id="target" name="target" data-validate-min="10" ng-model="input"/>
+         </form>
+     */
     .directive('validateMin', function () {
         return {
             restrict: 'A',
@@ -123,6 +172,20 @@ angular.module('myApp.home', ['ngRoute'])
             }
         };
     })
+    /**
+     * @ngdoc directive
+     * @name myApp.home:validateMax
+     * @element input
+     * @function
+     *
+     * @description
+     * user can define maximum allowed value dynamically. will through validation error if value is greater that min allowed
+     *
+     * @example
+     <form name="tradeForm">
+     <input type="text" id="target" name="target" data-validate-max="10" ng-model="input"/>
+     </form>
+     */
     .directive('validateMax', function () {
         return {
             restrict: 'A',
@@ -151,6 +214,20 @@ angular.module('myApp.home', ['ngRoute'])
             }
         };
     })
+    /**
+     * @ngdoc directive
+     * @name myApp.home:validateTransDate
+     * @element input
+     * @function
+     *
+     * @description
+     * This will validate the correct format of date entered in input box i.e DD/MM/YYYY
+     *
+     * @example
+     <form name="tradeForm">
+     <input type="text" id="target" name="target" validate-trans-date ng-model="input"/>
+     </form>
+     */
     .directive('validateTransDate', function () {
         return {
             restrict: 'A',
@@ -184,6 +261,7 @@ angular.module('myApp.home', ['ngRoute'])
                             return undefined;
                         } else {
                             ctrl.$setValidity('validateTransDate', true);
+                            //If format is right then validate the range
                             if(date < new Date(now.getUTCFullYear(),now.getMonth(),now.getDate()) || date > maxRange){
                                 ctrl.$setValidity('validateTransDateRange', false);
                                 return undefined;
