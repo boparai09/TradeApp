@@ -107,7 +107,7 @@ npm run test-single-run
 
 ### End to end testing
 
-The app comes with end-to-end tests, again written in [Jasmine][jasmine]. These tests
+The app comes with end-to-end tests configurations, again o written in [Jasmine][jasmine]. These tests
 are run with the [Protractor][protractor] End-to-End test runner.  It uses native events and has
 special features for Angular applications.
 
@@ -122,7 +122,7 @@ can interact with it.
 npm start
 ```
 
-In addition, since Protractor is built upon WebDriver we need to install this.  
+In addition, since Protractor is built upon WebDriver we need to install this.
 This project comes with a predefined script to do this:
 
 ```
